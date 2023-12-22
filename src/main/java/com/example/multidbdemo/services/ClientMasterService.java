@@ -18,6 +18,7 @@ public class ClientMasterService {
     this.sampleRepository = sampleRepository;
   }
 
+  @SuppressWarnings("java:S131")
   public List<Sample> getDatabaseNames(String client) {
         switch (client) {
             case "db1":

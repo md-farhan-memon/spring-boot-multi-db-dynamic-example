@@ -29,7 +29,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @EntityScan("com.example.multidbdemo.entities")
 public class DatabaseConfiguration {
 
-    private final String PACKAGE_SCAN = "com.example.multidbdemo.entities";
+    private static final String PACKAGE_SCAN = "com.example.multidbdemo.entities";
 
     @Primary
     @Bean(name = "db1DataSource")

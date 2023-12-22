@@ -6,10 +6,16 @@ public class DBContextHolder {
   public static void setCurrentDb(ClientNames dbType) {
       contextHolder.set(dbType);
   }
+
   public static ClientNames getCurrentDb() {
       return contextHolder.get();
   }
+
   public static void clear() {
       contextHolder.remove();
+  }
+
+  private DBContextHolder() {
+    throw new IllegalStateException("Utility class");
   }
 }
