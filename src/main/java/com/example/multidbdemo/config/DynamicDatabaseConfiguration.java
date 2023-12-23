@@ -1,4 +1,4 @@
-package com.example.multidbdemo.utils;
+package com.example.multidbdemo.config;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -10,17 +10,22 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProce
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 
-public class DynamicDatabaseConfiguration implements BeanDefinitionRegistryPostProcessor {
-  private final List<MerchantDataSources> merchantDataSources;
+import com.example.multidbdemo.pojos.MerchantDataSource;
 
-  public DynamicDatabaseConfiguration(List<MerchantDataSources> merchantDataSources) {
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class DynamicDatabaseConfiguration implements BeanDefinitionRegistryPostProcessor {
+  private final List<MerchantDataSource> merchantDataSources;
+
+  public DynamicDatabaseConfiguration(List<MerchantDataSource> merchantDataSources) {
     this.merchantDataSources = merchantDataSources;
   }
 
   @Override
   public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
     IntStream.range(0, merchantDataSources.size()).forEach(idx -> {
-      MerchantDataSources dataSource = merchantDataSources.get(idx);
+      MerchantDataSource dataSource = merchantDataSources.get(idx);
       GenericBeanDefinition genericBeanDefinition = new GenericBeanDefinition();
       genericBeanDefinition.setBeanClass(DataSource.class);
       genericBeanDefinition.setInstanceSupplier(
@@ -36,7 +41,7 @@ public class DynamicDatabaseConfiguration implements BeanDefinitionRegistryPostP
       }
 
       registry.registerBeanDefinition(dataSource.getBeanName(), genericBeanDefinition);
-      System.out.println(">>>>>>>>>>>>>>>>>>> Created >>>>>>>>> " + dataSource.getBeanName() + " | Primary " + genericBeanDefinition.isPrimary());
+      log.info("Created Bean >>>>>>>>> " + dataSource.getBeanName() + " | Primary " + genericBeanDefinition.isPrimary());
     });
   }
 }

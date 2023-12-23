@@ -1,9 +1,9 @@
-package com.example.multidbdemo.utils;
+package com.example.multidbdemo.pojos;
 
 import lombok.Data;
 
 @Data
-public class MerchantDataSources {
+public class MerchantDataSource {
   private String merchantId;
   private String dbUrl;
   private String dbUsername;
