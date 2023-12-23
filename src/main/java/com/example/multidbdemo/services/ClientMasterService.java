@@ -19,17 +19,18 @@ public class ClientMasterService {
   }
 
   public List<Sample> getDatabaseNames(String client) {
-        switch (client) {
-            case "db1":
-                DBContextHolder.setCurrentDb(ClientNames.DB1);
-                break;
-            case "db2":
-                DBContextHolder.setCurrentDb(ClientNames.DB2);
-                break;
-            case "db3":
-                DBContextHolder.setCurrentDb(ClientNames.DB3);
-                break;
-        }
+        DBContextHolder.setCurrentDb(client);
+        // switch (client) {
+        //     case "db1":
+        //         DBContextHolder.setCurrentDb(ClientNames.DB1);
+        //         break;
+        //     case "db2":
+        //         DBContextHolder.setCurrentDb(ClientNames.DB2);
+        //         break;
+        //     case "db3":
+        //         DBContextHolder.setCurrentDb(ClientNames.DB3);
+        //         break;
+        // }
         return sampleRepository.findAll();
     }
 }
