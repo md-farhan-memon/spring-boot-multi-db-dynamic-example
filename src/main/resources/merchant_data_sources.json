@@ -1,0 +1,20 @@
+[
+  {
+    "merchantId": "merchant-id-1",
+    "dbUrl": "jdbc:postgresql://localhost:5433/multi-db-1",
+    "dbUsername": "postgres",
+    "dbPassword": "Simpl1234"
+  },
+  {
+    "merchantId": "merchant-id-2",
+    "dbUrl": "jdbc:postgresql://localhost:5433/multi-db-2",
+    "dbUsername": "postgres",
+    "dbPassword": "Simpl1234"
+  },
+  {
+    "merchantId": "merchant-id-3",
+    "dbUrl": "jdbc:postgresql://localhost:5433/multi-db-3",
+    "dbUsername": "postgres",
+    "dbPassword": "Simpl1234"
+  }
+]
