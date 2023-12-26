@@ -20,8 +20,8 @@ public class SampleController {
     this.clientMasterService = clientMasterService;
   }
 
-  @GetMapping("/{dbSource}")
-  public List<Sample> findAllFromDb(@PathVariable String dbSource) {
-    return clientMasterService.getDatabaseNames(dbSource);
+  @GetMapping("/{merchantId}")
+  public List<Sample> findAllFromDb(@PathVariable String merchantId) {
+    return clientMasterService.getFromDatabase(merchantId);
   }
 }
