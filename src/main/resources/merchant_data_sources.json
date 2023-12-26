@@ -1,20 +1,20 @@
 [
   {
     "merchantId": "merchant-id-1",
-    "dbUrl": "jdbc:postgresql://localhost:5433/multi-db-1",
+    "dbUrl": "jdbc:postgresql://localhost:5433/multi-db-demo-1",
     "dbUsername": "postgres",
-    "dbPassword": "Simpl1234"
+    "dbPassword": "pass1234"
   },
   {
     "merchantId": "merchant-id-2",
-    "dbUrl": "jdbc:postgresql://localhost:5433/multi-db-2",
+    "dbUrl": "jdbc:postgresql://localhost:5433/multi-db-demo-2",
     "dbUsername": "postgres",
-    "dbPassword": "Simpl1234"
+    "dbPassword": "pass1234"
   },
   {
     "merchantId": "merchant-id-3",
-    "dbUrl": "jdbc:postgresql://localhost:5433/multi-db-3",
+    "dbUrl": "jdbc:postgresql://localhost:5433/multi-db-demo-3",
     "dbUsername": "postgres",
-    "dbPassword": "Simpl1234"
+    "dbPassword": "pass1234"
   }
 ]
