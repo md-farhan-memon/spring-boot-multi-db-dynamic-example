@@ -15,10 +15,10 @@ import com.example.multidbdemo.pojos.MerchantDataSource;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class DynamicDatabaseConfiguration implements BeanDefinitionRegistryPostProcessor {
+public class DynamicDatabaseConfigurationStatic implements BeanDefinitionRegistryPostProcessor {
   private final List<MerchantDataSource> merchantDataSources;
 
-  public DynamicDatabaseConfiguration(List<MerchantDataSource> merchantDataSources) {
+  public DynamicDatabaseConfigurationStatic(List<MerchantDataSource> merchantDataSources) {
     this.merchantDataSources = merchantDataSources;
   }
 
@@ -41,7 +41,7 @@ public class DynamicDatabaseConfiguration implements BeanDefinitionRegistryPostP
       }
 
       registry.registerBeanDefinition(dataSource.getBeanName(), genericBeanDefinition);
-      log.info("Created Bean >>>>>>>>> " + dataSource.getBeanName() + " | Primary " + genericBeanDefinition.isPrimary());
+      log.info("Created Bean Using Static Config >>>>>>>>> " + dataSource.getBeanName() + " | Primary " + genericBeanDefinition.isPrimary());
     });
   }
 }

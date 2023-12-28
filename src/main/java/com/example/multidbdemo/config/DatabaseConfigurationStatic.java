@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -27,17 +28,22 @@ import com.example.multidbdemo.utils.MultiRoutingDataSource;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Profile("staticFile")
 @EnableJpaRepositories
 @EnableTransactionManagement
 @Configuration(proxyBeanMethods = false)
 @EntityScan("com.example.multidbdemo.entities")
-public class DatabaseConfiguration {
+public class DatabaseConfigurationStatic {
 
     private static final String PACKAGE_SCAN = "com.example.multidbdemo.entities";
     private static final String MERCHANT_DATA_SOURCE_FILE_PATH = "classpath:merchant_data_sources.json";
 
     @Bean
     List<MerchantDataSource> merchantDataSources(ObjectMapper objectMapper) throws IOException {
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>> staticFile <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         PathMatchingResourcePatternResolver pathMatchingResourcePatternResolver = new PathMatchingResourcePatternResolver();
         return objectMapper.readValue(pathMatchingResourcePatternResolver.getResource(MERCHANT_DATA_SOURCE_FILE_PATH).getFile(), new TypeReference<List<MerchantDataSource>>(){});
     }
@@ -96,7 +102,7 @@ public class DatabaseConfiguration {
     }
 
     @Bean
-    public DynamicDatabaseConfiguration dynamicDatabaseConfiguration(List<MerchantDataSource> merchantDataSources) {
-        return new DynamicDatabaseConfiguration(merchantDataSources);
+    public DynamicDatabaseConfigurationStatic dynamicDatabaseConfigurationStatic(List<MerchantDataSource> merchantDataSources) {
+        return new DynamicDatabaseConfigurationStatic(merchantDataSources);
     }
 }
